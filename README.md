@@ -15,38 +15,45 @@ We expect applicants to have a foundational understanding of Odoo and Python. If
 
 Basic Git knowledge is required. Here are some resources to help you get started: [freeCodeCamp: The beginner’s guide to Git & GitHub](https://www.freecodecamp.org/news/the-beginners-guide-to-git-github/), [Git Immersion](https://gitimmersion.com/).
 
-### Docker
+### Codespaces
 
-We use Docker for our development environment. Ensure Docker is installed on your machine by following this guide: [Get Docker](https://docs.docker.com/get-docker/).
+This repository is set up to be opened in [Github Codspaces](https://github.com/features/codespaces), allowing you to easily start the exam without making any changes to your local machine.
+Codespaces includes a [free tier](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces#free-and-billed-use-by-personal-accounts) for personal accounts, with a limit of 120 core hours per month. Please note that OdevSolutions Co. will not cover any costs incurred from using Codespaces.
 
-You should also be able to set up an Odoo container using the [odoo:17](https://hub.docker.com/_/odoo) image. Refer to the usage guide on the page for detailed instructions.
+If you prefer a different kind of setup for your development environment, you are free to use it.
 
 ## Assessment Overview
 
-This assessment involves creating a custom Odoo module for a simple library management system. An existing module in this repository can be used as a starting point. Refer to: [library](library).
+This assessment involves creating a custom Odoo module for a simple library management system. An existing module in this repository can be used as a starting point. Refer to: [library](/addons_library/library).
 
 ## Getting Started
 
-First, [fork](https://github.com/odevsolutions/library/fork) this repository and clone it to your local machine. Then add the repository in your Odoo instance's addons path.
+First, [fork](https://github.com/odevsolutions/library/fork) this repository and open it in Github Codespaces. Add your created module in `/addons_library` folder.
 
 Refer to the sample snippet below for quick setup:
 
 ```bash
-# Run postgres container
-docker run -d -v odoo-db:/var/lib/postgresql/data -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:15
-
-# Clone your repository
-git clone https://github.com/your-username/library.git
-
-# Run odoo container
-docker run -v ./library:/mnt/extra-addons \
-     --name odoo \
-     -p 8069:8069 \
-     --link db:db \
-     -t odoo:17
+# Build the containers
+docker-compose up -d
 ```
 
-> Note: If this snippet doesn't work for you, please refer to the official documentation for [odoo Docker container](https://hub.docker.com/_/odoo).
+Refer below on how to stop, restart and remove containers.
+
+```bash
+# Stop and remove the containers
+docker-compose down -d
+
+# Restart the containers
+docker restart exam-library-web-1 exam-library-db-1
+
+# Stop the containers
+docker stop exam-library-web-1 exam-library-db-1
+```
+
+If the port `8069` is not automatically forwarded from the Codespace to you local machine you 
+can refer to the tutorial below on how to add it manually. <br/>
+[Github: Forwarding ports in your codespace](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace?tool=vscode#forwarding-a-port-1)
+
 
 ## Tasks
 

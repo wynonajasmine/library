@@ -9,12 +9,13 @@ class LibraryBook(models.Model):
     ######################
     _name = "library.book"
     _description = "Book"
-    _order = "name"
+    _order = "title"
+    _rec_name = "title"
 
     ###################
     # Default methods #
     ###################
-    name = fields.Char(string="Name",
+    title = fields.Char(string="Book Title",
                        required=True)
     isbn_13 = fields.Char(string="ISBN 13",
                           required=True)
@@ -30,7 +31,9 @@ class LibraryBook(models.Model):
     ############################
     # Constrains and onchanges #
     ############################
-
+    _sql_constraints = [
+        ('unique_isbn_13', 'unique(isbn_13)', 'The ISBN-13 must be unique!'),
+    ]
     #########################
     # CRUD method overrides #
     #########################

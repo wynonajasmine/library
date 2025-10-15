@@ -16,7 +16,7 @@
         <field name="model">library.book.category</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
+                <field name="category"/>
             </tree>
         </field>
     </record>
@@ -28,7 +28,7 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
+                        <field name="category"/>
                     </group>
                 </sheet>
             </form>

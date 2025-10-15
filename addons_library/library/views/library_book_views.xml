@@ -5,7 +5,7 @@
         <field name="model">library.book</field>
         <field name="arch" type="xml">
             <tree string="Book List">
-                <field name="name"/>
+                <field name="title"/>
                 <field name="isbn_13"/>
             </tree>
         </field>
@@ -18,7 +18,7 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
+                        <field name="title"/>
                         <field name="isbn_13"/>
                     </group>
                 </sheet>
